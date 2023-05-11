@@ -28,16 +28,22 @@ def sitemap():
 @app.route('/members', methods=['GET'])
 def handle_get_all_members():
     members = jackson_family.get_all_members()
+    if not len(members) > 0:
+        return jsonify({"Members": "No members found"}), 404
     return jsonify(members), 200
 
 @app.route('/member/<int:id>', methods=['GET'])
 def handle_get_member(id):
     member = jackson_family.get_member(id)
+    if not member:
+        return("No member found with this id"), 404
     return jsonify(member), 200
 
 @app.route('/member', methods=['POST'])
 def handle_new_member():
-    jackson_family.add_member(request.json)
+    response = jackson_family.add_member(request.json)
+    if not response:
+        return jsonify("Something went wrong. Please check your data."), 400
     return jsonify({"Members":"Member added successfully!"}), 200
 
 @app.route('/member/<int:id>', methods=['DELETE'])
