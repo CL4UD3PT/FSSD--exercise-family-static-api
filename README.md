@@ -45,7 +45,7 @@ RESPONSE BODY (content-type: application/json):
 
 ### 2) Retrieve one member
 
-Which returns the member of the family where `id == member_id`.
+Which returns the member of the family by passing its `id`.
 
 ```md
 GET /member/<int:id>
