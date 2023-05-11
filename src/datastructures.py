@@ -48,8 +48,6 @@ class FamilyStructure:
         self._members.append(member)
 
     def delete_member(self, id):
-        # new_list = list(filter(lambda i: i['id'] != id, self._members))
-        # print(new_list)
         for member in self._members:
             if member["id"] == id:
                 print(id)
